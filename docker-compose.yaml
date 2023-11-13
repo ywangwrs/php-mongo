@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  php-apache:
+    image: php8
+    container_name: php8
+    restart: always
+    ports:
+      - 80:80
+    volumes:
+      - /opt/src/yow:/data/src
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:7.0
+    container_name: mongo
+    restart: always
+    volumes:
+      - /opt/data/mongodb:/data/db
+      - /tmp:/tmp
+
+  mongo-express:
+    image: mongo-express
+    container_name: mongo-express
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_BASICAUTH_USERNAME=user
+      - ME_CONFIG_BASICAUTH_PASSWORD=strong_password
+    ports:
+      - 9999:8081
