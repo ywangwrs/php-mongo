@@ -1,0 +1,43 @@
+# About Me
+set from = "my_account@gmail.com"
+set realname = "First Last Name"
+set use_from = yes
+set envelope_from = yes
+
+# My credentials
+set imap_user = "my_account@gmail.com"
+set smtp_url = "smtps://my_account@gmail.com@smtp.gmail.com:465/"
+# Get from https://myaccount.google.com/u/1/apppasswords
+set imap_pass="16 chars app password"
+set smtp_pass=$imap_pass
+
+# My mailboxes
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set record = "+INBOX/Sent"
+set postponed = "+INBOX/Drafts"
+set ssl_starttls=yes
+set ssl_force_tls=yes
+
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+set sort = threads
+set editor = "vim"
+
+# GnuPG bootstrap
+# source ~/.mutt/gpg.rc
+
+# Macro commands
+bind index "^" imap-fetch-mail
+#set 'index_format="%4C %Z %{%b %d} %-15.15L (%4l) %s"'
+set index_format="%4C %Z %X %{%Y%m%d} %-15.15F %-15.15t %?M?(#%03M)&(%4c)? %?y?(%.20Y) ?%s"
+
+# Address book
+set query_command = "mail-query '%s' ~/Mail"
