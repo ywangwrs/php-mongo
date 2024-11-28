@@ -1,4 +1,4 @@
-FROM php:8.3.11-apache
+FROM php:8.3.14-apache
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
@@ -25,10 +25,11 @@ RUN rm /usr/lib/python3.11/EXTERNALLY-MANAGED \
     google-api-python-client \
     google_auth_oauthlib \
     pyshorteners \
-    pymongo
+    pymongo \
+    pandas
 
 # youtube-dl
-RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2023.10.13/yt-dlp_linux -O /usr/bin/youtube-dl \
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2024.11.18/yt-dlp_linux -O /usr/bin/youtube-dl \
  && chmod 755 /usr/bin/youtube-dl
 
 RUN mkdir /var/www/.mutt \
