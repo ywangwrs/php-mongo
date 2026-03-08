@@ -1,4 +1,4 @@
-FROM php:8.3.14-apache
+FROM php:8.5.3-apache
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
@@ -20,8 +20,7 @@ RUN docker-php-ext-install pdo pdo_mysql mysqli \
  && echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini
 
 # Python3, google-api-python-client and pyshorteners
-RUN rm /usr/lib/python3.11/EXTERNALLY-MANAGED \
- && pip3 install \
+RUN pip3 install --break-system-packages \
     google-api-python-client \
     google_auth_oauthlib \
     pyshorteners \
@@ -29,7 +28,7 @@ RUN rm /usr/lib/python3.11/EXTERNALLY-MANAGED \
     pandas
 
 # youtube-dl
-RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2024.11.18/yt-dlp_linux -O /usr/bin/youtube-dl \
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.03/yt-dlp_linux -O /usr/bin/youtube-dl \
  && chmod 755 /usr/bin/youtube-dl
 
 RUN mkdir /var/www/.mutt \
