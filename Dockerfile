@@ -1,4 +1,4 @@
-FROM php:8.5.3-apache
+FROM php:8.5.12-apache
 
 RUN apt-get update \
  && apt-get install --yes --no-install-recommends \
@@ -28,8 +28,8 @@ RUN pip3 install --break-system-packages \
     pandas
 
 # youtube-dl
-RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.03/yt-dlp_linux -O /usr/bin/youtube-dl \
- && chmod 755 /usr/bin/youtube-dl
+RUN wget https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.21/yt-dlp_linux -O /usr/bin/yt-dlp \
+ && chmod 755 /usr/bin/yt-dlp
 
 RUN mkdir /var/www/.mutt \
  && chmod 777 /var/log
